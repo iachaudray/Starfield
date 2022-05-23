@@ -1,10 +1,13 @@
 class Star {
+  static final int SPEED = 5;
   PVector vec;
+  PVector stColor;
   Star() {
     vec = new PVector(random(-width/2, width/2), random(-height/2, height/2), random(width));
+    stColor = new PVector(random(0,255), random(0,255), random(0,255));
   }
   void show() {
-    fill(255);
+    fill(stColor.x, stColor.y, stColor.z);
     noStroke();
     float sx = map(vec.x / vec.z, 0, 1, 0, width);
     float sy = map(vec.y / vec.z, 0, 1, 0, height);
@@ -14,7 +17,7 @@ class Star {
     ellipse(sx, sy, r, r);
   }
   void update() {
-    vec.z -= 2;
+    vec.z -= SPEED;
     if (vec.z < 1) {
       vec.z = width;
       vec.x = random(-width/2, width/2);
